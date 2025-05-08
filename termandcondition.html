@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - Code Hostels</title>
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #4caf50;
+            --light-green: #e8f5e9;
+            --dark-green: #1b5e20;
+            --accent-color: #81c784;
+            --text-color: #333;
+            --light-text: #fff;
+            --border-color: #c8e6c9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            margin: 10px 0;
+        }
+        
+        .container {
+            padding: 20px;
+            background-color: #fff;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        h2:after {
+            content: '+';
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        h2.active:after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            margin: 20px 0 10px 0;
+        }
+        
+        .section-content {
+            margin-left: 0;
+            display: none;
+            padding-top: 10px;
+        }
+        
+        .section-content.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        ol, ul {
+            padding-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .important {
+            font-weight: bold;
+            color: var(--dark-green);
+        }
+        
+        .disclaimer {
+            background-color: var(--light-green);
+            padding: 20px;
+            border-left: 4px solid var(--dark-green);
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        footer {
+            margin-top: 40px;
+            border-top: 3px solid var(--secondary-color);
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--primary-color);
+            background-color: var(--light-green);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background-color: var(--light-green);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .toc h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .toc ul {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+        
+        .toc li {
+            margin-bottom: 10px;
+        }
+        
+        .toc a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 5px 10px;
+            border-left: 2px solid transparent;
+        }
+        
+        .toc a:hover {
+            color: var(--dark-green);
+            border-left: 2px solid var(--secondary-color);
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--light-green);
+            border: 2px solid var(--secondary-color);
+            color: var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .section {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 5px 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">CODE HOSTELS</div>
+        <h1>Terms and Conditions</h1>
+       
+    </header>
+    
+    <div class="container">
+        <div class="toc" id="tableOfContents">
+            <h3>Table of Contents</h3>
+            <ul id="tocList">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2 id="introduction">Introduction</h2>
+            <div class="section-content">
+                <p>Welcome to the codehostesls.co website or App, including related applications (collectively, this "Website"). This Website is provided solely to assist people in gathering information, posting opinions, engaging in interactive forums, and searching for Code Hostels, and for no other purposes. The terms "we", "us", "our" and "codehostels.co" refer to Code and Co, and our corporate affiliates and websites (collectively, "Codehostels"). The term "you" refers to the customer visiting the Website and/or contributing content on this Website.</p>
+                
+                <p>This Website is offered to you conditioned upon your acceptance without modification of any/all the terms, conditions, and notices set forth below (collectively, the "Agreement"). By accessing or using this Website in any manner, you agree to be bound by the Agreement and represent that you have read and understood its terms. Please read the Agreement carefully, as it contains information concerning your legal rights and limitations on these rights, as well as a section regarding applicable law and jurisdiction of disputes. If you do not accept all of these terms and conditions you are not authorized to use this Website. We may change or otherwise modify the Agreement in the future in accordance with the Terms of Service herein, and you understand and agree that your continued access or use of this Website after such change signifies your acceptance of the updated or modified Agreement. We will note the date that revisions were last made to the Agreement at the bottom of this page, and any revisions will take effect upon posting. We will notify our members of material changes to these terms and conditions by either sending a notice to the email address provided to us at registration or by placing a notice on our Website. Be sure to return to this page periodically to review the most current version of the Agreement.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="user-of-the-website">User of the Website</h2>
+            <div class="section-content">
+                <p>As a condition of your use of this Website, you warrant that (i) all information supplied by you on this Website is true, accurate, current and complete, (ii) if you have a Codehostels account, you will safeguard your account information and will supervise and be completely responsible for any use of your account by anyone other than you, (iii) you are 13 years of age or older in order to register for an account and contribute to our Website. Codehostels does not knowingly collect the information of anyone under the age of 13. We retain the right at our sole discretion to deny access to anyone to this Website and the services we offer, at any time and for any reason, including, but not limited to, for violation of this Agreement.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="prohibited-activities">Prohibited Activities</h2>
+            <div class="section-content">
+                <p>The content and information on this Website (including, but not limited to, messages, data, information, text, music, sound, photos, graphics, video, maps, icons, software, code or other material), as well as the infrastructure used to provide such content and information, is proprietary to us. You agree not to otherwise modify, copy, distribute, transmit, display, perform, reproduce, publish, license, create derivative works from, transfer, or sell or re-sell any information, software, products, or services obtained from or through this Website. Additionally, you agree not to:</p>
+                
+                <ol>
+                    <li>Use this Website or its contents for any commercial purpose</li>
+                    <li>Access, monitor or copy any content or information of this Website using any robot, spider, scraper or other automated means or any manual process for any purpose without our express written permission</li>
+                    <li>Violate the restrictions in any robot exclusion headers on this Website or bypass or circumvent other measures employed to prevent or limit access to this Website</li>
+                    <li>Take any action that imposes, or may impose, in our discretion, an unreasonable or disproportionately large load on our infrastructure</li>
+                    <li>"frame", "mirror" or otherwise incorporate any part of this Website into any other website without our prior written authorization</li>
+                    <li>Attempt to modify, translate, adapt, edit, decompile, disassemble, or reverse engineer any software programs used by Codehostels in connection with the Website or the services.</li>
+                    <li>Use the "reservations" feature for anything that is outside of legitimate money transmission for spaces to take reservations from customers booking rooms/beds</li>
+                    <li>Solicit spaces listed on our website(s) with offers to join similar and/or competing service offering</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="privacy-policy">Privacy Policy and Disclosures</h2>
+            <div class="section-content">
+                <p>Codehostels believes in protecting your privacy. Any personal information you post on the Website will be used in accordance with our Privacy Policy. View our Privacy Policy</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="reviews-comments">Reviews, Comments and Use of Other Interactive Areas</h2>
+            <div class="section-content">
+                <p>We appreciate hearing from you. Please be aware that by submitting content to this Website by email, postings on this Website or otherwise, including any reviews, blog posts, questions, comments, suggestions, ideas or the like contained in any submissions (collectively, "Submissions"), you grant Codehostels and its affiliates a nonexclusive, royalty-free, perpetual, transferable, irrevocable and fully sub-licensable right to (a) use, reproduce, modify, adapt, translate, distribute, publish, create derivative works from and publicly display and perform such Submissions throughout the world in any media, now known or hereafter devised, for any purpose; and (b) use the name that you submit in connection with such Submission. You acknowledge that Codehostels may choose to provide attribution of your comments or reviews at our discretion. You further grant Codehostels the right to pursue at law any person or entity that violates your or Codehostels's rights in the Submissions by a breach of this Agreement. You acknowledge and agree that Submissions are non-confidential and non-proprietary.</p>
+                
+                <p>This Website may contain discussion forums, bulletin boards, review services or other forums in which you or third parties may post reviews of Codehostels or other content, messages, materials or other items on this Website ("Interactive Areas"). If Codehostels provides such Interactive Areas, you are solely responsible for your use of such Interactive Areas and use them at your own risk. By using any Interactive Areas, you expressly agree not to post, upload to, transmit, distribute, store, create or otherwise publish through this Website any of the following:</p>
+                
+                <p>Any message, data, information, text, music, sound, photos, graphics, code or any other material ("Content") that is false, unlawful, misleading, libelous, defamatory, obscene, pornographic, indecent, lewd, suggestive, harassing, or advocates harassment of another person, threatening, invasive of privacy or publicity rights, abusive, inflammatory, fraudulent or otherwise objectionable; Content that is patently offensive to the online community, such as content that promotes racism, bigotry, hatred or physical harm of any kind against any group or individual; Content which promotes any political or religious point of view; Content that would constitute, encourage, promote or provide instructions for a conduct of an illegal activity, criminal offense, give rise to civil liability, violate the rights of any party in any country of the world, or that would otherwise create liability or violate any local, state, national or international law, including, without limitation, the regulations of the U.S. Securities and Exchange Commission (SEC) or any rules of any of securities exchange , including but not limited to, the New York Stock Exchange (NYSE), the NASDAQ, or the London Stock Exchange; Content that provides instructional information about illegal activities such as making or buying illegal weapons, violating someone's privacy, or providing or creating computer viruses; Content that may infringe any patent, trademark, trade secret, copyright or other intellectual or proprietary right of any party.</p>
+            </div>
+        </div>
+        
+        <div class="section disclaimer">
+            <h2 id="disclaimer">Disclaimer of Warranties and Limitation of Liability</h2>
+            <div class="section-content">
+                <p class="important">PLEASE READ THIS SECTION CAREFULLY. THIS SECTION LIMITS Codehostels'S LIABILITY TO YOU FOR ISSUES THAT MAY ARISE IN CONNECTION WITH YOUR USE OF THIS WEBSITE. IF YOU DO NOT UNDERSTAND THE TERMS IN THIS SECTION OR ELSEWHERE IN THE AGREEMENT, PLEASE CONSULT A LAWYER FOR CLARIFICATION BEFORE ACCESSING OR USING THIS WEBSITE.</p>
+                
+                <p>THE INFORMATION, SOFTWARE, PRODUCTS, AND SERVICES PUBLISHED ON THIS WEBSITE MAY INCLUDE INACCURACIES OR ERRORS, INCLUDING ROOM AVAILABILITY. Codehostels DOES NOT GUARANTEE THE ACCURACY OF, AND DISCLAIM ALL LIABILITY FOR, ANY ERRORS OR OTHER INACCURACIES RELATING TO THE INFORMATION AND DESCRIPTION OF ROOMS DISPLAYED ON THIS WEBSITE (INCLUDING, WITHOUT LIMITATION, THE PRICING, AVAILABILITY, PHOTOGRAPHS, REVIEWS AND RATINGS, ETC.). IN ADDITION, Codehostels EXPRESSLY RESERVES THE RIGHT TO CORRECT ANY AVAILABILITY AND PRICING ERRORS ON OUR WEBSITE.</p>
+                
+                <p>Codehostels MAKES NO REPRESENTATIONS OF ANY KIND ABOUT THE SUITABILITY OF THE INFORMATION, SOFTWARE, PRODUCTS, AND SERVICES CONTAINED ON THIS WEBSITE (SITE CONTENT) OR ANY PORTION THEROF FOR ANY PURPOSE, AND THE INCLUSION OR OFFERING OF ANY PRODUCTS OR SERVICES ON THIS WEBSITE DOES NOT CONSTITUTE ANY ENDORSEMENT OR RECOMMENDATION OF SUCH PRODUCTS OR SERVICES BY Codehostels. ALL SUCH INFORMATION, SOFTWARE, PRODUCTS, AND SERVICES ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. Codehostels DISCLAIMS ALL WARRANTIES, CONDITIONS, OR OTHER TERMS OF ANY KIND THAT THIS WEBSITE, ITS SERVERS OR ANY EMAIL SENT FROM Codehostels, ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="hyperlinks">Hyperlinks</h2>
+            <div class="section-content">
+                <p>This Website may contain hyperlinks to websites operated by parties other than Codehostels. Such hyperlinks are provided for your reference only. We do not control such websites and are not responsible for their contents or the privacy or other practices of such websites. Further, it is up to you to take precautions to ensure that whatever links you select or software you download (whether from this Website or other websites) is free of such items as viruses, worms, trojan horses, defects and other items of a destructive nature. Our inclusion of hyperlinks to such websites does not imply any endorsement of the material on such websites or any association with their hosts. In some cases you may be asked by a third party site to link your profile on Codehostels to a profile on another third party site. Choosing to do so is purely optional, and the decision to allow this information to be linked can be disabled (with the third party site) at any time.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="copyright-complaints">Copyright Complaints</h2>
+            <div class="section-content">
+                <p>Unless otherwise specified, the materials on the websites are presented solely to provide information regarding and to promote Codehostels's services, websites and partners. The Codehostels websites are controlled and operated by Codehostels from its remote offices. Codehostels makes no representation that materials on the Codehostels websites are appropriate or available for use outside of United States. Those who choose to access the Codehostels website from outside of United States do so on their own initiative and are responsible for compliance with local laws, if and to the extent that local laws are applicable.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="refund-policy">Refund Policy</h2>
+            <div class="section-content">
+                <p>The policy of refund is subject to the terms of conditions of the Leave and License agreement (LLA.) that is signed by a user on purchase of the product available on the website. A draft of LLA is presented to the user upon accepting the terms and conditions. This LLA once digitally signed provides the terms of conditions of the refund related to deposit amount and/or other refund to be processed. It is specifically made clear that the said deposit will remain with the Licensor during the terms of the License under this Agreement and the same will be refunded to the Licensee. The said Security Deposit amount shall be refunded only after the expiry of the 30 days' notice from the Licensee and Licensor will refund the Security Deposit to the Licensee within 14 working days after the end of the 30 days' notice and subject to the Licensee vacating the Licensed premises and also subject to deductions. In case of cancellations, Codehostels is not liable to pay the any paid amount back to the customer. The same is captured is the LLA that is digitally signed by the user.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="copyright-trademark">Copyright and Trademark Notices</h2>
+            <div class="section-content">
+                <p>The entire content of this website is under the copyright protection of Code and Co, Please be aware that Codehostels does not claim responsibility for content on websites not operated by us. The graphic logo, along with any other names or slogans related to our products or services displayed on this website, are either registered or common law trademarks of Codehostels, or its suppliers or licensors. These trademarks may not be replicated, imitated, or used in any capacity without the explicit written permission of Codehostels or the relevant trademark holder. Furthermore, the distinctive aesthetic of this website, which includes elements such as page headers, custom graphics, button icons, and scripts, is considered the service mark, trademark, and/or trade dress of Codehostels. These unique elements are also protected and may not be copied, imitated, or used, whether in full or in part, without the preceding written approval of Codehostels. All other trademarks, registered trademarks, product names, and company names or logos that appear on this website are the exclusive property of their respective owners. It should be noted that any mention of products, services, processes, or other information, by trade name, trademark, manufacturer, supplier, or otherwise, does not imply an endorsement, sponsorship, or recommendation by Codehostels.</p>
+                
+                <h3>Policy for illegal content</h3>
+                <p>If you have any complaints or objections to material or content including User Messages posted on this Website, or if you believe that material or content posted on this Website infringes a copyright that you hold, please contact us immediately emailing support@codehostels.co. Once this procedure has been followed Codehostels will make all reasonable endeavours to remove illegal content within a reasonable time.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="jurisdiction">Jurisdiction and Governing Law</h2>
+            <div class="section-content">
+                <p>These terms are governed by and construed in accordance with the laws of India. While we will make reasonable efforts to resolve any disagreements you may have with the Company, if these efforts fail, you agree as well as we agree that all claims, disputes or controversies against the Company arising out of these terms, or the purchase of any products or services (claims), shall be referred to arbitration in accordance with the arbitration and conciliation act, 1996, or any statutory modification or re-enactment thereof for the time being in force and such arbitration proceedings shall be held in english at Vadodra, India. The arbitration shall be conducted by a sole arbitrator appointed by the Company in accordance with the arbitration and conciliation act, 1996 and the arbitral award shall be final and binding upon the parties. Further, you agree as we do, to submit to the exclusive jurisdiction of courts at Vadodra.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="student-housing">Student Housing</h2>
+            <div class="section-content">
+                <p>We provide housing exclusively for students, with accommodation offered on an academic-year contract basis. Any breach of this contract will not be entertained, and those who violate it will be required to compensate for any resulting losses.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="refund-completion">Refund Upon Completion</h2>
+            <div class="section-content">
+                <p>As per the refund policy, any fees will only be refunded upon the completion of the academic year. Code Hostels reserves the right to take legal action in case of any breach of contract.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="back-to-top" id="backToTop">↑</div>
+    
+    <footer>
+        <p>Last updated: May 2, 2025</p>
+        <p>© 2025 Code Hostels. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Toggle sections
+        document.querySelectorAll('.section h2').forEach(header => {
+            header.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const content = this.nextElementSibling;
+                content.classList.toggle('show');
+            });
+        });
+        
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Generate Table of Contents
+        const tocList = document.getElementById('tocList');
+        const headings = document.querySelectorAll('.section h2');
+        
+        headings.forEach(heading => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.textContent = heading.textContent;
+            a.href = `#${heading.id}`;
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetHeading = document.getElementById(heading.id);
+                const targetSection = targetHeading.parentElement;
+                const targetContent = targetHeading.nextElementSibling;
+                
+                // Expand the section if it's not already expanded
+                if (!targetContent.classList.contains('show')) {
+                    targetHeading.classList.add('active');
+                    targetContent.classList.add('show');
+                }
+                
+                // Scroll to the section
+                window.scrollTo({
+                    top: targetSection.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            });
+            
+            li.appendChild(a);
+            tocList.appendChild(li);
+        });
+        
+        // Dark/Light Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = themeToggle.textContent;
+            
+            if (currentTheme.includes('Dark')) {
+                // Switch to dark mode
+                document.body.style.backgroundColor = '#1e1e1e';
+                document.body.style.color = '#e0e0e0';
+                
+                document.querySelectorAll('.section').forEach(section => {
+                    section.style.backgroundColor = '#2a2a2a';
+                    section.style.borderLeftColor = '#4caf50';
+                });
+                
+                document.querySelectorAll('h2').forEach(h2 => {
+                    h2.style.borderBottomColor = '#3a3a3a';
+                });
+                
+                document.querySelectorAll('.disclaimer').forEach(disclaimer => {
+                    disclaimer.style.backgroundColor = '#2a3a2a';
+                });
+                
+                themeToggle.textContent = 'Switch to Light Mode';
+                themeToggle.style.backgroundColor = '#2e7d32';
+                themeToggle.style.color = '#fff';
+            } else {
+                // Switch to light mode
+                document.body.style.backgroundColor = '#fff';
+                document.body.style.color = '#333';
+                
+                document.querySelectorAll('.section').forEach(section => {
+                    section.style.backgroundColor = '#fff';
+                    section.style.borderLeftColor = '#4caf50';
+                });
+                
+                document.querySelectorAll('h2').forEach(h2 => {
+                    h2.style.borderBottomColor = '#c8e6c9';
+                });
+                
+                document.querySelectorAll('.disclaimer').forEach(disclaimer => {
+                    disclaimer.style.backgroundColor = '#e8f5e9';
+                });
+                
+                themeToggle.textContent = 'Switch to Dark Mode';
+                themeToggle.style.backgroundColor = '#e8f5e9';
+                themeToggle.style.color = '#2e7d32';
+            }
+        });
+        
+        // Auto-open first section
+        const firstHeader = document.querySelector('.section h2');
+        const firstContent = firstHeader.nextElementSibling;
+        firstHeader.classList.add('active');
+        firstContent.classList.add('show');
+    </script>
+</body>
+</html>

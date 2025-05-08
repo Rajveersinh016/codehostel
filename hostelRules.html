@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Hostels - House Rules</title>
+    <style>
+        :root {
+            --primary-green: #2e7d32;
+            --light-green: #4caf50;
+            --very-light-green: #e8f5e9;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+            --dark-gray: #616161;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .introduction {
+            background-color: var(--very-light-green);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--primary-green);
+        }
+        
+        .rules-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            background-color: var(--gray);
+            padding: 1rem;
+            border-radius: 5px;
+        }
+        
+        .nav-btn {
+            background-color: var(--white);
+            color: var(--primary-green);
+            border: 1px solid var(--light-green);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .nav-btn:hover {
+            background-color: var(--light-green);
+            color: var(--white);
+        }
+        
+        .nav-btn.active {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+        
+        .rule-section {
+            margin-bottom: 2rem;
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .rule-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .section-header {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-green);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .rule-list {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+        
+        .rule-item {
+            margin-bottom: 0.75rem;
+        }
+        
+        .sub-rule {
+            padding-left: 2rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .bullet {
+            color: var(--primary-green);
+            margin-right: 0.5rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--very-light-green);
+        }
+        
+        footer {
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--primary-green);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .rules-nav {
+                flex-direction: column;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Code Hostels - House Rules</h1>
+    </header>
+    
+    <div class="container">
+        <div class="introduction">
+            <p>These House Rules ("Rules") are applicable to all residents ("Residents") staying in any property ("House") operated by Code Hostels. These rules form an integral part of the Resident Agreement and are binding. Any breach of these rules may result in penalties, termination of the agreement, or other action as deemed appropriate by Code Hostels. The rules may be updated at any time without prior notice.</p>
+        </div>
+        
+        <div class="rules-nav" id="rulesNav">
+            <button class="nav-btn active" data-section="section1">1. Care of the Property</button>
+            <button class="nav-btn" data-section="section2">2. Substance Use</button>
+            <button class="nav-btn" data-section="section3">3. Conduct & Behaviour</button>
+            <button class="nav-btn" data-section="section4">4. Pantry & Food Policy</button>
+            <button class="nav-btn" data-section="section5">5. Utilities</button>
+            <button class="nav-btn" data-section="section6">6. Security & Safety</button>
+            <button class="nav-btn" data-section="section7">7. Housekeeping</button>
+            <button class="nav-btn" data-section="section8">8. Laundry</button>
+            <button class="nav-btn" data-section="section9">9. Internet Usage</button>
+            <button class="nav-btn" data-section="section10">10. Electrical Appliances</button>
+            <button class="nav-btn" data-section="section11">11. Health and Hygiene</button>
+            <button class="nav-btn" data-section="section12">12. Photography</button>
+            <button class="nav-btn" data-section="section13">13. Visitors & Guests</button>
+            <button class="nav-btn" data-section="section14">14. Payments & Dues</button>
+            <button class="nav-btn" data-section="section15">15. Complaints</button>
+            <button class="nav-btn" data-section="section16">16. Penalties</button>
+            <button class="nav-btn" data-section="section17">17. General</button>
+        </div>
+        
+        <div id="section1" class="rule-section active">
+            <h2 class="section-header">1. Care of the Property</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Vandalism is strictly prohibited. Any act causing damage or defacement to property will lead to eviction and recovery of full damages from the responsible resident.</li>
+                <li class="rule-item">Common use items (microwave, iron, kettle, TV, etc.) must remain in designated common areas. Shifting to individual rooms is not allowed.</li>
+                <li class="rule-item">Furniture and furnishings in common areas must not be rearranged or removed.</li>
+                <li class="rule-item">All damages or maintenance issues must be immediately reported to Code Hostels management. Damages beyond normal wear and tear will be chargeable.</li>
+                <li class="rule-item">Residents are responsible for the safekeeping of their room and cupboard keys. Loss or replacement of keys will incur a fee. Lock changes are not permitted without approval.</li>
+                <li class="rule-item">If a resident is granted permission to install an additional lock, a spare key must be submitted to the Residence Manager and roommate.</li>
+            </ol>
+        </div>
+        
+        <div id="section2" class="rule-section">
+            <h2 class="section-header">2. Substance Use, Betting & Gambling</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Possession, distribution, or consumption of illegal substances is prohibited and may result in eviction and legal action.</li>
+                <li class="rule-item">Gambling or betting in any form is not allowed within the property premises.</li>
+            </ol>
+        </div>
+        
+        <div id="section3" class="rule-section">
+            <h2 class="section-header">3. Conduct & Behaviour</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Ragging is a criminal offense and will be reported to legal authorities.</li>
+                <li class="rule-item">In emergencies, residents must follow all directions issued by Code Hostels staff or security.</li>
+                <li class="rule-item">Parties or guest gatherings require prior written permission and must adhere to decorum guidelines. Clean-up is the responsibility of the host.</li>
+                <li class="rule-item">All Code Hostels staff must be treated with respect. Misconduct may result in disciplinary action.</li>
+                <li class="rule-item">Harassment, discrimination, or derogatory remarks based on religion, caste, gender, or beliefs will not be tolerated.</li>
+                <li class="rule-item">Loud noise or music is prohibited between 10:30 PM and 6:00 AM.</li>
+                <li class="rule-item">Misconduct within or around the premises that disturbs the neighbourhood may result in eviction.</li>
+                <li class="rule-item">Residents must cooperate with Code Hostels staff for police verification and any mandatory compliance.</li>
+            </ol>
+        </div>
+        
+        <div id="section4" class="rule-section">
+            <h2 class="section-header">4. Pantry & Food Policy</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Cooking is only permitted in the designated pantry area.</li>
+                <li class="rule-item">Personal food in shared refrigerators must be labelled. Unlabelled items may be discarded.</li>
+                <li class="rule-item">Residents are responsible for maintaining pantry hygiene. Dirty dishes should be cleaned or kept in the sink.</li>
+                <li class="rule-item">Common cutlery must not be taken to rooms. Personal utensils must be used for room consumption.</li>
+                <li class="rule-item">Leftovers and packaging from food delivery must be discarded properly.</li>
+            </ol>
+        </div>
+        
+        <div id="section5" class="rule-section">
+            <h2 class="section-header">5. Utilities</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Water must be used judiciously. Leaks should be reported promptly.</li>
+                <li class="rule-item">Electricity Billing:
+                    <ul class="sub-rule">
+                        <li><span class="bullet">•</span>Prepaid meters: Residents must manage recharges. Roommates must coordinate privately.</li>
+                        <li><span class="bullet">•</span>Shared meters: Bills will be split equally among residents.</li>
+                    </ul>
+                </li>
+                <li class="rule-item">During generator (DG) power supply, use of high-load appliances like ACs or geysers may be restricted.</li>
+            </ol>
+        </div>
+        
+        <div id="section6" class="rule-section">
+            <h2 class="section-header">6. Security & Safety</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Entry/exit to Houses is regulated via access control systems or smart locks.</li>
+                <li class="rule-item">Residents under 18 or in their first 3 months of college must seek approval for late entry or night-outs via the Resident App.</li>
+                <li class="rule-item">Code Hostels reserves the right to deny night-outs or entry in specific situations.</li>
+                <li class="rule-item">Code Hostels is not responsible for loss of valuables. Residents must lock rooms and secure belongings.</li>
+                <li class="rule-item">Maintenance staff may enter rooms in the resident's absence for necessary work.</li>
+                <li class="rule-item">Dangerous items (e.g., firearms, explosives) are banned. Bags may be inspected at any time.</li>
+                <li class="rule-item">Tampering with safety equipment (CCTV, fire extinguishers) will incur heavy penalties.</li>
+            </ol>
+        </div>
+        
+        <div id="section7" class="rule-section">
+            <h2 class="section-header">7. Housekeeping</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Housekeeping may access rooms even when residents are away. Valuables must be secured.</li>
+                <li class="rule-item">Staff will not assist with personal chores such as washing personal utensils.</li>
+                <li class="rule-item">Residents must cooperate during periodic fumigation and maintenance.</li>
+                <li class="rule-item">Littering is strictly prohibited.</li>
+            </ol>
+        </div>
+        
+        <div id="section8" class="rule-section">
+            <h2 class="section-header">8. Laundry</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Laundry is only for daily wear. Underwear and socks are not accepted.</li>
+                <li class="rule-item">Delicate, dry-clean-only, or branded clothing must not be given for regular wash.</li>
+                <li class="rule-item">Residents must verify the number of clothes submitted.</li>
+                <li class="rule-item">Laundry discrepancies must be reported within 6 hours of delivery.</li>
+                <li class="rule-item">Full stain removal is not guaranteed.</li>
+            </ol>
+        </div>
+        
+        <div id="section9" class="rule-section">
+            <h2 class="section-header">9. Internet Usage</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Bandwidth per user may be limited based on provider and location.</li>
+                <li class="rule-item">Internet is for personal and fair use only. Activities like illegal downloads or IP masking are prohibited.</li>
+            </ol>
+        </div>
+        
+        <div id="section10" class="rule-section">
+            <h2 class="section-header">10. Electrical Appliances</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Unauthorized appliances (heaters, cookers, irons, etc.) are not allowed unless prepaid metering is present.</li>
+                <li class="rule-item">Usage of high-wattage appliances may attract fines.</li>
+                <li class="rule-item">Appliances must be switched off when leaving the room.</li>
+                <li class="rule-item">Overloading washing machines or refrigerators is prohibited.</li>
+            </ol>
+        </div>
+        
+        <div id="section11" class="rule-section">
+            <h2 class="section-header">11. Health and Hygiene</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Residents must report any infectious or critical illness to the Residence Manager.</li>
+                <li class="rule-item">Only medication prescribed by a registered medical practitioner is permitted.</li>
+            </ol>
+        </div>
+        
+        <div id="section12" class="rule-section">
+            <h2 class="section-header">12. Photography & Surveillance</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Residents may take photos/recordings but must respect others' privacy.</li>
+                <li class="rule-item">All common areas are under CCTV surveillance.</li>
+            </ol>
+        </div>
+        
+        <div id="section13" class="rule-section">
+            <h2 class="section-header">13. Visitors & Guests</h2>
+            <ol class="rule-list">
+                <li class="rule-item">All guests must register at the reception and provide valid ID.</li>
+                <li class="rule-item">Guests of the opposite gender may not enter rooms unless permitted in co-ed Houses. Otherwise, they are allowed only in designated common areas.</li>
+                <li class="rule-item">Overnight stay by same-gender guests is allowed with prior booking and subject to availability and roommate approval.</li>
+                <li class="rule-item">Parents may visit during the day and, in specific cases, may stay overnight based on gender-specific house rules.</li>
+                <li class="rule-item">Guests are not permitted in the resident's absence.</li>
+                <li class="rule-item">Residents are responsible for their guests' conduct and any damages.</li>
+            </ol>
+        </div>
+        
+        <div id="section14" class="rule-section">
+            <h2 class="section-header">14. Payments & Dues</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Residents must pay all fees on time as per the agreement.</li>
+                <li class="rule-item">Disputes must be raised via the Resident App. Non-payment may result in eviction.</li>
+                <li class="rule-item">Residents may not vacate the premises until dues are cleared.</li>
+            </ol>
+        </div>
+        
+        <div id="section15" class="rule-section">
+            <h2 class="section-header">15. Complaints & Suggestions</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Feedback sessions are conducted regularly. Residents are encouraged to participate.</li>
+                <li class="rule-item">All complaints must be submitted through the Resident App only.</li>
+                <li class="rule-item">Defamation or spreading false claims against staff or Code Hostels, including on social media, will result in strict action.</li>
+            </ol>
+        </div>
+        
+        <div id="section16" class="rule-section">
+            <h2 class="section-header">16. Penalties</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Offense</th>
+                        <th>Penalty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Smoking/Drinking inside the House</td>
+                        <td>₹500 per instance</td>
+                    </tr>
+                    <tr>
+                        <td>Unauthorized guest of opposite gender</td>
+                        <td>₹1,000 per instance</td>
+                    </tr>
+                    <tr>
+                        <td>Unregistered visitor</td>
+                        <td>₹2,000 per instance</td>
+                    </tr>
+                    <tr>
+                        <td>Tampering with CCTV</td>
+                        <td>₹2,000 per instance</td>
+                    </tr>
+                    <tr>
+                        <td>Unauthorized use of electrical appliances</td>
+                        <td>₹1,000 per instance</td>
+                    </tr>
+                    <tr>
+                        <td>Key replacement</td>
+                        <td>₹500 per instance</td>
+                    </tr>
+                    <tr>
+                        <td>Leaving taps/lights on unattended</td>
+                        <td>₹500 per instance</td>
+                    </tr>
+                    <tr>
+                        <td>Taking food/cutlery to room</td>
+                        <td>₹500 per instance</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="section17" class="rule-section">
+            <h2 class="section-header">17. General</h2>
+            <ol class="rule-list">
+                <li class="rule-item">Pets are not allowed.</li>
+                <li class="rule-item">Political or religious events require prior written approval.</li>
+                <li class="rule-item">Code Hostels staff may conduct surprise checks.</li>
+                <li class="rule-item">Residents are responsible for collecting packages.</li>
+                <li class="rule-item">Technicians may enter rooms under staff supervision when required.</li>
+                <li class="rule-item">Residents may be shifted in case of emergencies or operational reasons.</li>
+                <li class="rule-item">All changes to rules will be communicated via noticeboards or the Resident App.</li>
+                <li class="rule-item">Loss/damage to recreation equipment or game accessories will be charged to responsible residents.</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="back-to-top" id="backToTop">↑</div>
+    
+    <footer>
+        <p>&copy; 2025 Code Hostels. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        // Navigation between rule sections
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const ruleSections = document.querySelectorAll('.rule-section');
+        
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const sectionId = button.getAttribute('data-section');
+                
+                // Update active button
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Show selected section
+                ruleSections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === sectionId) {
+                        section.classList.add('active');
+                    }
+                });
+                
+                // Scroll to section
+                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
