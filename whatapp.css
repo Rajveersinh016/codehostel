@@ -1,0 +1,85 @@
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.whatsapp-icon {
+    width: 35px;
+    height: 35px;
+    fill: white;
+}
+
+/* Demo styling - just for preview purposes */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.demo-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+/* Responsive styles for mobile devices */
+@media only screen and (max-width: 768px) {
+    .whatsapp-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .whatsapp-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .demo-content {
+        max-width: 100%;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 6px;
+    }
+}
+
+/* For very small screens */
+@media only screen and (max-width: 480px) {
+    .whatsapp-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .whatsapp-icon {
+        width: 25px;
+        height: 25px;
+    }
+}

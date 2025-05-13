@@ -1,0 +1,643 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all 0.3s;
+    padding: 1rem 0;
+    background-color: transparent;
+}
+
+.navbar.scrolled {
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 100px;
+}
+
+.desktop-nav {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .desktop-nav {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.desktop-nav a {
+    margin-left: 2rem;
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.navbar:not(.scrolled) .desktop-nav a {
+    color: white;
+}
+
+.desktop-nav a:hover {
+    color: #0d9488;
+}
+
+.book-now {
+    background-color: #0d9488;
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.3s;
+}
+
+.book-now:hover {
+    background-color: #0f766e;
+}
+
+.mobile-toggle {
+    background: none;
+    border: none;
+    color: #374151;
+    cursor: pointer;
+    display: block;
+}
+
+.navbar:not(.scrolled) .mobile-toggle {
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .mobile-toggle {
+        display: none;
+    }
+}
+
+.mobile-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+    padding: 1rem 0;
+    z-index: 20;
+}
+
+.mobile-nav.open {
+    display: block;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+}
+
+.mobile-nav-links a {
+    color: #374151;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    transition: color 0.3s;
+}
+
+.mobile-nav-links a:hover {
+    color: #0d9488;
+}
+
+.mobile-book-now {
+    background-color: #0d9488;
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.3s;
+    text-align: center;
+    margin-top: 0.5rem;
+    text-decoration: none;
+}
+
+.mobile-book-now:hover {
+    background-color: #0f766e;
+}
+
+/* Hero Section Styles */
+.hero-section {
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-image: url('Code_Hostels_Board_View.jpg');
+    background-size: cover; /* Changed from contain to cover for better mobile display */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+}
+
+.hero-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 20;
+    text-align: center;
+}
+
+/* Mobile-first approach with responsive padding */
+@media (min-width: 480px) {
+    .hero-container {
+        padding: 0 1.25rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .hero-container {
+        padding: 0 1.5rem;
+    }
+}
+
+.hero-content {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 1rem; /* Added padding for mobile */
+}
+
+.hero-badge {
+    display: inline-block;
+    background-color: #0d9488;
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem; /* Reduced for mobile */
+    opacity: 0;
+    transition: opacity 0.7s;
+    font-size: 0.875rem; /* Smaller font on mobile */
+}
+
+@media (min-width: 640px) {
+    .hero-badge {
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+.hero-heading {
+    font-size: 1.75rem; /* Smaller on mobile */
+    line-height: 1.2;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem; /* Smaller margin on mobile */
+    opacity: 0;
+    transition: opacity 0.7s;
+}
+
+@media (min-width: 480px) {
+    .hero-heading {
+        font-size: 2.25rem;
+        margin-bottom: 1.25rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .hero-heading {
+        font-size: 3.75rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.hero-heading span {
+    font-weight: 400;
+}
+
+.hero-subheading {
+    font-size: 1rem; /* Smaller on mobile */
+    color: white;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.7s;
+    padding: 0 0.5rem; /* Added padding for readability on mobile */
+}
+
+@media (min-width: 480px) {
+    .hero-subheading {
+        font-size: 1.125rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .hero-subheading {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        padding: 0;
+    }
+}
+
+.hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* Smaller gap on mobile */
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.7s;
+    padding: 0 1rem; /* Added padding for better mobile layout */
+}
+
+@media (min-width: 480px) {
+    .hero-buttons {
+        gap: 1rem;
+    }
+}
+
+@media (min-width: 640px) {
+    .hero-buttons {
+        flex-direction: row;
+        padding: 0;
+    }
+}
+
+.btn-primary {
+    background-color: #0d9488;
+    color: white;
+    font-weight: 600;
+    padding: 0.625rem 1.5rem; /* Smaller padding on mobile */
+    border-radius: 0.375rem;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem; /* Smaller font on mobile */
+    width: 100%; /* Full width on mobile */
+}
+
+@media (min-width: 640px) {
+    .btn-primary {
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+        width: auto;
+    }
+}
+
+.btn-primary:hover {
+    background-color: #0f766e;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #0d9488;
+    font-weight: 600;
+    padding: 0.625rem 1.5rem; /* Smaller padding on mobile */
+    border-radius: 0.375rem;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.875rem; /* Smaller font on mobile */
+    width: 100%; /* Full width on mobile */
+}
+
+@media (min-width: 640px) {
+    .btn-secondary {
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+        width: auto;
+    }
+}
+
+.btn-secondary:hover {
+    background-color: #f3f4f6;
+    transform: scale(1.05);
+}
+
+.scroll-indicator {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem; /* Smaller on mobile */
+}
+
+@media (min-width: 768px) {
+    .scroll-indicator {
+        margin-top: 4rem;
+    }
+}
+
+.scroll-button {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    padding: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    animation: bounce 2s infinite;
+    display: inline-flex;
+    text-decoration: none;
+}
+
+.scroll-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.animate-fadeIn {
+    opacity: 1 !important;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Additional sections for smooth scrolling */
+#about, #rooms, #amenities, #gallery, #testimonials, #contact, #booking {
+    min-height: 100vh;
+    padding-top: 60px; /* Smaller on mobile */
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+    #about, #rooms, #amenities, #gallery, #testimonials, #contact, #booking {
+        padding-top: 80px; /* Space for navbar */
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+/* Handling extremely small screens */
+@media (max-height: 500px) {
+    .hero-section {
+        height: auto;
+        min-height: 100vh;
+        padding: 2rem 0;
+    }
+    
+    .hero-badge {
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero-heading {
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero-subheading {
+        margin-bottom: 1rem;
+    }
+    
+    .scroll-indicator {
+        margin-top: 1.5rem;
+    }
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 375px) {
+    /* Smaller screens adjustments */
+    .logo img {
+        width: 80px;
+    }
+    
+    .hero-badge {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.75rem;
+    }
+    
+    .hero-heading {
+        font-size: 1.5rem;
+    }
+    
+    .hero-subheading {
+        font-size: 0.875rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.8rem;
+    }
+    
+    .mobile-nav-links a {
+        padding: 0.4rem 0;
+    }
+}
+
+/* Specific optimization for 350px width */
+@media (max-width: 350px) {
+    .logo img {
+        width: 70px; /* Even smaller logo */
+    }
+    
+    .navbar {
+        padding: 0.5rem 0;
+    }
+    
+    .container, .hero-container {
+        padding: 0 0.5rem; /* Tighter padding */
+    }
+    
+    .hero-badge {
+        font-size: 0.7rem;
+        padding: 0.15rem 0.6rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero-heading {
+        font-size: 1.25rem; /* Further reduced heading */
+        line-height: 1.1;
+        margin-bottom: 0.75rem;
+    }
+    
+    .hero-subheading {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+        padding: 0 0.25rem;
+    }
+    
+    .hero-buttons {
+        gap: 0.5rem;
+        padding: 0 0.5rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 0.4rem 1rem;
+        font-size: 0.7rem;
+    }
+    
+    .mobile-nav-links {
+        padding: 0 0.5rem;
+    }
+    
+    .mobile-nav-links a {
+        padding: 0.35rem 0;
+        font-size: 0.9rem;
+    }
+    
+    .mobile-book-now {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .scroll-indicator {
+        margin-top: 1.5rem;
+    }
+    
+    .scroll-button {
+        padding: 0.35rem;
+        transform: scale(0.9);
+    }
+    
+    /* Adjust section padding */
+    #about, #rooms, #amenities, #gallery, #testimonials, #contact, #booking {
+        padding-top: 50px;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+/* Touch-friendly interactions */
+@media (max-width: 768px) {
+    /* Improve tap targets */
+    .mobile-nav-links a, .mobile-book-now {
+        padding: 0.75rem 0.5rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .mobile-toggle {
+        padding: 0.5rem;
+    }
+    
+    /* Improve readability on small screens */
+    .hero-content {
+        padding: 1rem 0.5rem;
+    }
+    
+    /* Handle navigation menu better */
+    .mobile-nav {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+}
+
+/* Further optimizations for typical mobile breakpoints */
+@media (max-width: 480px) {
+    .nav-content {
+        padding: 0 0.25rem;
+    }
+    
+    .mobile-toggle {
+        transform: scale(0.9);
+    }
+    
+    .hero-content {
+        padding: 0.75rem 0.25rem;
+    }
+    
+    /* Ensure text doesn't overflow */
+    .hero-heading, .hero-subheading {
+        word-break: break-word;
+        hyphens: auto;
+    }
+    
+    /* Improve loading performance */
+    .hero-section {
+        background-size: auto 100%; /* Optimize background loading */
+    }
+}
+
+/* Handle orientation changes */
+@media (orientation: landscape) and (max-height: 600px) {
+    .hero-section {
+        height: auto;
+        min-height: 120vh;
+    }
+    
+    .hero-content {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+    
+    .hero-heading {
+        font-size: 1.5rem;
+    }
+    
+    .hero-badge {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Fix for notched phones and safe areas */
+@supports (padding: max(0px)) {
+    .container, .hero-container {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+    
+    .navbar {
+        padding-top: max(1rem, env(safe-area-inset-top));
+    }
+}
+
+/* Improve performance on mobile */
+@media (max-width: 768px) {
+    .scroll-button {
+        animation: bounce 3s infinite;
+    }
+    
+    .navbar, .hero-badge, .hero-heading, .hero-subheading, .hero-buttons {
+        will-change: opacity, transform;
+    }
+}

@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refer & Earn - Code Hostels</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #334b74;
+            --accent-color: #ff6b6b;
+            --background-color: #f9fafb;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --light-text: #666;
+            --border-color: #e5e7eb;
+            --success-color: #34c759;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        .hero {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .benefits {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .benefit {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            width: 200px;
+        }
+        
+        .benefit-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefit h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        main {
+            padding: 3rem 0;
+        }
+        
+        .refer-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            height: 100%;
+        }
+        
+        .referral-code {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+        
+        .referral-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px dashed var(--accent-color);
+            background: #f8f8f8;
+            border-radius: 6px;
+            font-size: 1.2rem;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        
+        .copy-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            width: 100%;
+        }
+        
+        .copy-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .share-options {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .share-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: transform 0.3s;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-5px);
+        }
+        
+        .share-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+        }
+        
+        .facebook {
+            background-color: #3b5998;
+        }
+        
+        .twitter {
+            background-color: #1da1f2;
+        }
+        
+        .whatsapp {
+            background-color: #25d366;
+        }
+        
+        .email {
+            background-color: #ea4335;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .steps {
+            margin: 2rem 0;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step-number {
+            background-color: var(--accent-color);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .rewards-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .rewards-table th, .rewards-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .rewards-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .rewards-table tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .pending {
+            background-color: #ffcc00;
+            color: #856404;
+        }
+        
+        .completed {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+        
+        .stat-label {
+            color: var(--light-text);
+        }
+        
+        .faq {
+            margin: 3rem 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.2rem;
+            background-color: #f8f8f8;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+        }
+        
+        .faq-question.active::after {
+            content: "-";
+        }
+        
+        .faq-answer {
+            padding: 0 1.2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 1.2rem;
+            max-height: 500px;
+        }
+        
+        .cta {
+            text-align: center;
+            padding: 3rem 0;
+            background-color: #f0f4f9;
+            margin: 3rem 0;
+            border-radius: 10px;
+        }
+        
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .cta-btn:hover {
+            transform: scale(1.05);
+            background-color: #ff5252;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background-color: var(--success-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        
+        .tooltip.show {
+            opacity: 1;
+        }
+        
+        .tooltip::before {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent var(--success-color) transparent;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .contact-info {
+            margin-bottom: 1rem;
+        }
+        
+        .contact-link {
+            color: white;
+            text-decoration: none;
+            margin-left: 0.5rem;
+        }
+        
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .refer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .benefit {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <span class="logo-icon">⟨⟩</span>
+                    Code Hostels
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Refer Friends, Earn Rewards</h1>
+            <p>Invite your friends to join Code Hostels and earn exclusive rewards for each successful referral. The more friends join, the more you earn!</p>
+            
+            <div class="benefits">
+                <div class="benefit">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Cash Rewards</h3>
+                    <p>Get ₹500 for each successful referral</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">🎁</div>
+                    <h3>Friend Benefits</h3>
+                    <p>Your friends get ₹200 off their first booking</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">⭐</div>
+                    <h3>Premium Features</h3>
+                    <p>Unlock exclusive features with 5+ referrals</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <main>
+        <div class="container">
+            <div class="refer-container">
+                <div class="card">
+                    <h2 class="section-title">Your Referral Link</h2>
+                    <p>Share this unique referral code with your friends and earn rewards when they sign up.</p>
+                    
+                    <div class="referral-code">
+                        <input type="text" class="referral-input" id="referralCode" value="CODEHOSTEL25" readonly>
+                        <button class="copy-btn" id="copyBtn">Copy Referral Code</button>
+                        <span class="tooltip" id="tooltip">Copied!</span>
+                    </div>
+                    
+                    <h3 style="text-align: center; margin-top: 2rem;">Share via</h3>
+                    <div class="share-options">
+                        <a href="#" class="share-btn" id="facebookShare">
+                            <span class="share-icon facebook">f</span>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="#" class="share-btn" id="twitterShare">
+                            <span class="share-icon twitter">t</span>
+                            <span>Twitter</span>
+                        </a>
+                        <a href="#" class="share-btn" id="whatsappShare">
+                            <span class="share-icon whatsapp">w</span>
+                            <span>WhatsApp</span>
+                        </a>
+                        <a href="#" class="share-btn" id="emailShare">
+                            <span class="share-icon email">@</span>
+                            <span>Email</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="section-title">How It Works</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Share Your Referral Code</h3>
+                                <p>Share your unique referral code with friends through social media, email, or messaging apps.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Friends Sign Up</h3>
+                                <p>Your friends create an account using your referral code during registration.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Friends Make a Booking</h3>
+                                <p>Once they make their first booking, the referral is considered successful.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Earn Rewards</h3>
+                                <p>You'll receive ₹500 for each successful referral, and your friend gets ₹200 off their first booking.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 2rem;">
+                <h2 class="section-title">Your Referral Stats</h2>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalReferrals">12</div>
+                        <div class="stat-label">Total Referrals</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="successfulReferrals">8</div>
+                        <div class="stat-label">Successful Referrals</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalEarnings">₹4,000</div>
+                        <div class="stat-label">Total Earnings</div>
+                    </div>
+                </div>
+                
+                <h3 style="margin: 2rem 0 1rem 0;">Recent Referrals</h3>
+                <div style="overflow-x: auto;">
+                    <table class="rewards-table">
+                        <thead>
+                            <tr>
+                                <th>Friend</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Reward</th>
+                            </tr>
+                        </thead>
+                        <tbody id="referralTableBody">
+                            <tr>
+                                <td>Rajesh S.</td>
+                                <td>Apr 28, 2025</td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td>₹500</td>
+                            </tr>
+                            <tr>
+                                <td>Priya M.</td>
+                                <td>Apr 25, 2025</td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td>₹500</td>
+                            </tr>
+                            <tr>
+                                <td>Vikram K.</td>
+                                <td>Apr 23, 2025</td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td>₹500</td>
+                            </tr>
+                            <tr>
+                                <td>Ananya P.</td>
+                                <td>Apr 20, 2025</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td>₹500</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="faq">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How do I earn referral rewards?</div>
+                    <div class="faq-answer">
+                        <p>You earn rewards when your referred friends sign up using your referral code and complete their first booking. For each successful referral, you'll receive ₹500 credited to your Code Hostels wallet, which you can use for future bookings or withdraw to your bank account.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">When will I receive my referral reward?</div>
+                    <div class="faq-answer">
+                        <p>Referral rewards are processed within 7 days after your friend completes their first booking. Once processed, the reward amount will be added to your Code Hostels wallet, and you'll receive a notification via email.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Is there a limit to how many friends I can refer?</div>
+                    <div class="faq-answer">
+                        <p>There is no limit to the number of friends you can refer. The more people you refer, the more rewards you can earn! Additionally, referring 5 or more friends unlocks premium features and exclusive offers.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What does my friend get when they use my referral code?</div>
+                    <div class="faq-answer">
+                        <p>Your friend receives ₹200 off their first booking when they sign up using your referral code. This discount is automatically applied during checkout when they make their first booking.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How long is my referral code valid?</div>
+                    <div class="faq-answer">
+                        <p>Your referral code never expires! You can use the same code for all your referrals. However, each friend can only use one referral code during sign-up, so make sure they use yours!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta">
+                <h2>Start Referring Now!</h2>
+                <p>Share your referral code with friends and start earning rewards today.</p>
+                <a href="#" class="cta-btn">Copy My Referral Code</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="contact-info">
+                    Contact us: <a href="mailto:support@codehostels.co" class="contact-link">support@codehostels.co</a>
+                </div>
+                <div class="copyright">
+                    &copy; 2025 Code Hostels. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Copy referral code functionality
+        const copyBtn = document.getElementById('copyBtn');
+        const referralCode = document.getElementById('referralCode');
+        const tooltip = document.getElementById('tooltip');
+        const ctaBtn = document.querySelector('.cta-btn');
+        
+        function copyToClipboard() {
+            referralCode.select();
+            referralCode.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            
+            // Show tooltip
+            tooltip.classList.add('show');
+            
+            // Hide tooltip after 2 seconds
+            setTimeout(() => {
+                tooltip.classList.remove('show');
+            }, 2000);
+        }
+        
+        copyBtn.addEventListener('click', copyToClipboard);
+        ctaBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            copyToClipboard();
+        });
+        
+        // Share buttons functionality
+        const facebookShare = document.getElementById('facebookShare');
+        const twitterShare = document.getElementById('twitterShare');
+        const whatsappShare = document.getElementById('whatsappShare');
+        const emailShare = document.getElementById('emailShare');
+        
+        const shareMessage = "Join Code Hostels using my referral code CODEHOSTEL25 and get ₹200 off your first booking!";
+        const shareUrl = "https://codehostels.co/join";
+        
+        facebookShare.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareMessage)}`, '_blank');
+        });
+        
+        twitterShare.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareMessage)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
+        });
+        
+        whatsappShare.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open(`https://wa.me/?text=${encodeURIComponent(shareMessage + ' ' + shareUrl)}`, '_blank');
+        });
+        
+        emailShare.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = `mailto:?subject=${encodeURIComponent('Join Code Hostels with my referral code')}&body=${encodeURIComponent(shareMessage + '\n\n' + shareUrl)}`;
+        });
+        
+        // FAQ accordion functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                
+                // Close all FAQs
+                faqQuestions.forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+                
+                // If the clicked question wasn't active, open it
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+        
+        // Mock data for referral stats (in a real application, this would come from the server)
+        let referralData = {
+            totalReferrals: 12,
+            successfulReferrals: 8,
+            pendingReferrals: 4,
+            totalEarnings: 4000,
+            referrals: [
+                { name: 'Rajesh S.', date: 'Apr 28, 2025', status: 'completed', reward: 500 },
+                { name: 'Priya M.', date: 'Apr 25, 2025', status: 'completed', reward: 500 },
+                { name: 'Vikram K.', date: 'Apr 23, 2025', status: 'completed', reward: 500 },
+                { name: 'Ananya P.', date: 'Apr 20, 2025', status: 'pending', reward: 500 }
+            ]
+        };
+        
+        // Function to add a new referral (for demonstration purposes)
+        function addNewReferral() {
+            const randomNames = ['Aditya G.', 'Sneha R.', 'Rahul T.', 'Meera K.', 'Arjun P.'];
+            const randomName = randomNames[Math.floor(Math.random() * randomNames.length)];
+            const today = new Date();
+            const dateString = `May ${today.getDate()}, 2025`;
+            const status = Math.random() > 0.5 ? 'completed' : 'pending';
+            
+            const newReferral = {
+                name: randomName,
+                date: dateString,
+                status: status,
+                reward: 500
+            };
+            
+            referralData.referrals.unshift(newReferral);
+            referralData.totalReferrals++;
+            
+            if (status === 'completed') {
+                referralData.successfulReferrals++;
+                referralData.totalEarnings += 500;
+            } else {
+                referralData.pendingReferrals++;
+            }
+            
+            updateReferralStats();
+            updateReferralTable();
+        }
+        
+        // Function to update the referral statistics
+        function updateReferralStats() {
+            document.getElementById('totalReferrals').textContent = referralData.totalReferrals;
+            document.getElementById('successfulReferrals').textContent = referralData.successfulReferrals;
+            document.getElementById('totalEarnings').textContent = `₹${referralData.totalEarnings}`;
+        }
+        
+        // Function to update the referral table
+        function updateReferralTable() {
+            const tableBody = document.getElementById('referralTableBody');
+            tableBody.innerHTML = '';
+            
+            referralData.referrals.slice(0, 4).forEach(referral => {
+                const row = document.createElement('tr');
+                
+                const nameCell = document.createElement('td');
+                nameCell.textContent = referral.name;
+                
+                const dateCell = document.createElement('td');
+                dateCell.textContent = referral.date;
+                
+                const statusCell = document.createElement('td');
+                const statusSpan = document.createElement('span');
+                statusSpan.classList.add('status', referral.status);
+                statusSpan.textContent = referral.status.charAt(0).toUpperCase() + referral.status.slice(1);
+                statusCell.appendChild(statusSpan);
+                
+                const rewardCell = document.createElement('td');
+                rewardCell.textContent = `₹${referral.reward}`;
+                
+                row.appendChild(nameCell);
+                row.appendChild(dateCell);
+                row.appendChild(statusCell);
+                row.appendChild(rewardCell);
+                
+                tableBody.appendChild(row);
+            });
+        }
+        
+        // Simulate a new referral every 30 seconds (for demonstration purposes)
+        // In a real application, this would come from server notifications
+        setInterval(addNewReferral, 30000);
+        
+        // Initialize referral statistics counters animation
+        function animateCounter(element, targetValue, duration = 1500) {
+            let startValue = 0;
+            const increment = targetValue / (duration / 16);
+            let currentValue = startValue;
+            
+            const updateCounter = () => {
+                currentValue += increment;
+                
+                if (currentValue >= targetValue) {
+                    element.textContent = element.id === 'totalEarnings' ? `₹${targetValue}` : targetValue;
+                } else {
+                    element.textContent = element.id === 'totalEarnings' ? 
+                        `₹${Math.floor(currentValue)}` : Math.floor(currentValue);
+                    requestAnimationFrame(updateCounter);
+                }
+            };
+            
+            requestAnimationFrame(updateCounter);
+        }
+        
+        // Run counter animations when page loads
+        window.addEventListener('load', () => {
+            animateCounter(document.getElementById('totalReferrals'), referralData.totalReferrals);
+            animateCounter(document.getElementById('successfulReferrals'), referralData.successfulReferrals);
+            animateCounter(document.getElementById('totalEarnings'), referralData.totalEarnings);
+        });
+        
+        // Track referral link clicks (for analytics in a real application)
+        function trackReferralShare(platform) {
+            console.log(`Referral shared via ${platform}`);
+            // In a real application, this would send analytics data to the server
+            
+            // Show a temporary notification
+            const notification = document.createElement('div');
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.right = '20px';
+            notification.style.backgroundColor = 'var(--success-color)';
+            notification.style.color = 'white';
+            notification.style.padding = '15px 20px';
+            notification.style.borderRadius = '5px';
+            notification.style.boxShadow = '0 3px 10px rgba(0,0,0,0.2)';
+            notification.style.zIndex = '1000';
+            notification.textContent = `Shared successfully via ${platform}!`;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transition = 'opacity 0.5s';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 500);
+            }, 3000);
+        }
+        
+        // Add tracking to share buttons
+        facebookShare.addEventListener('click', () => trackReferralShare('Facebook'));
+        twitterShare.addEventListener('click', () => trackReferralShare('Twitter'));
+        whatsappShare.addEventListener('click', () => trackReferralShare('WhatsApp'));
+        emailShare.addEventListener('click', () => trackReferralShare('Email'));
+        
+        // Progressive enhancement for mobile
+        function checkMobile() {
+            const isMobile = window.innerWidth < 768;
+            
+            // Adjust share buttons for mobile
+            if (isMobile) {
+                const shareOptions = document.querySelector('.share-options');
+                shareOptions.style.flexWrap = 'wrap';
+                
+                const shareButtons = document.querySelectorAll('.share-btn');
+                shareButtons.forEach(btn => {
+                    btn.style.width = 'calc(50% - 1rem)';
+                    btn.style.margin = '0.5rem';
+                });
+            }
+        }
+        
+        // Run mobile check on page load and window resize
+        window.addEventListener('load', checkMobile);
+        window.addEventListener('resize', checkMobile);
+        
+        // Add confetti animation when someone copies the referral code (for a fun interactive element)
+        function showConfetti() {
+            // Simple confetti animation
+            const confettiCount = 100;
+            const container = document.createElement('div');
+            container.style.position = 'fixed';
+            container.style.top = '0';
+            container.style.left = '0';
+            container.style.width = '100%';
+            container.style.height = '100%';
+            container.style.pointerEvents = 'none';
+            container.style.zIndex = '9999';
+            document.body.appendChild(container);
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = ['#ff6b6b', '#4a6fa5', '#ffcc00', '#34c759'][Math.floor(Math.random() * 4)];
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confetti.style.top = '-10px';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                container.appendChild(confetti);
+                
+                // Animate the confetti
+                const duration = 1000 + Math.random() * 3000;
+                const animation = confetti.animate([
+                    { top: '-10px', opacity: 1 },
+                    { top: '100%', opacity: 0 }
+                ], {
+                    duration: duration,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.2, 1)'
+                });
+                
+                animation.onfinish = () => {
+                    confetti.remove();
+                    // Remove container if it's empty
+                    if (container.children.length === 0) {
+                        container.remove();
+                    }
+                };
+            }
+        }
+        
+        // Add confetti to copy button
+        copyBtn.addEventListener('click', showConfetti);
+        ctaBtn.addEventListener('click', showConfetti);
+    </script>
+</body>
+</html>
